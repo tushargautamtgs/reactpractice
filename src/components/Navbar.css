@@ -19,7 +19,7 @@ nav a:hover {
   color: #fff;
 }
 
-
+/* Active link (NavLink automatically adds 'active' class) */
 nav a.active {
   background-color: #007bff;
   color: white;

@@ -1,8 +1,8 @@
 export default function Company() {
   return (
     <div>
-      <h2>About Our Company 🏢</h2>
-      <p>Cyber Freeze is dedicated to delivering the best solutions worldwide.</p>
+      <h2>🏢 Our Company</h2>
+      <p>We are a leading software company building cool stuff.</p>
     </div>
   );
 }

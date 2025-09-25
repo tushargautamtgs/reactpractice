@@ -1,80 +1,83 @@
-body,
-html {
+body {
   margin: 0;
-  padding: 0;
-  font-family: Arial;
-}
-.app {
-  background: #f4f4f4;
-  min-height: 100vh;
-  color: #000;
-}
-.app.dark {
-  background: #222;
-  color: #fff;
+  font-family: "Inter", sans-serif;
+  background: #f7f9fc;
 }
 
-header {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
-  background: #2dd4bf;
-  color: #fff;
+  background: #1a1a2e;
+  padding: 1rem 2rem;
 }
-nav {
-  display: flex;
-  gap: 10px;
-  padding: 10px 20px;
-  flex-wrap: wrap;
-  background: #0ea5e9;
+
+.logo {
+  color: #f1f1f1;
 }
-nav button {
-    border-radius: 10px;
-  padding: 5px 10px;
+
+.links a {
+  color: #aaa;
+  margin-left: 1rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.links a.active {
+  color: #00d9ff;
+  border-bottom: 2px solid #00d9ff;
+}
+
+.container {
+  padding: 2rem;
+}
+
+.page {
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin-top: 1rem;
+}
+
+.subnav a {
+  margin-right: 1rem;
+  text-decoration: none;
+  color: #0077ff;
+}
+
+.subnav a:hover {
+  text-decoration: underline;
+}
+
+.btn {
+  margin-top: 1rem;
+  padding: 8px 16px;
+  background: #00d9ff;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  color: #1b1616;
-  font-weight: bold;
+  color: #fff;
 }
 
-main {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  padding: 20px;
-}
-.card {
-  background: #e8d0d0;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  min-width: 250px;
-  flex: 1 1 250px;
-}
-.app.dark .card {
-  background: #333;
+.btn:hover {
+  background: #00b7cc;
 }
 
-input {
+.service-links a {
+  display: inline-block;
+  margin-right: 1rem;
+  color: #0077ff;
+  text-decoration: none;
+}
 
-  margin-bottom: 5px;
-  width: 90%;
-  border-radius: 5px;
-  border: 1px solid #6d1717;
+.service-links a:hover {
+  text-decoration: underline;
 }
-button {
-  margin: 5px 5px;
-  padding: 5px 7px ;
-  border-radius: 7px;
-  cursor: pointer;
-}
-.error {
-  color: #fb7185;
-  font-size: 12px;
-}
-.success {
-  color: #16a34a;
-  font-weight: bold;
+
+.detail {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  background: #e0f7ff;
+  border-radius: 6px;
 }
