@@ -1,4 +1,11 @@
-import React, { useState, useReducer, useRef, useEffect, createContext, useContext } from "react";
+import React, {
+  useState,
+  useReducer,
+  useRef,
+  // useEffect,
+  createContext,
+  useContext,
+} from "react";
 import "./App.css";
 
 // ========== Theme Context ==========
@@ -58,12 +65,19 @@ function Todo() {
   return (
     <div className="card">
       <h2>Todo App</h2>
-      <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Enter todo"/>
+      <input
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Enter todo"
+      />
       <button onClick={handleAdd}>Add</button>
       <ul>
         {todos.map((t) => (
           <li key={t.id}>
-            {t.text} <button onClick={() => dispatch({ type: "REMOVE", payload: t.id })}>X</button>
+            {t.text}{" "}
+            <button onClick={() => dispatch({ type: "REMOVE", payload: t.id })}>
+              X
+            </button>
           </li>
         ))}
       </ul>
@@ -88,7 +102,11 @@ function UserList() {
   return (
     <div className="card">
       <h2>User List</h2>
-      <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Add user"/>
+      <input
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
+        placeholder="Add user"
+      />
       <button onClick={addUser}>Add</button>
       <ul>
         {users.map((u) => (
@@ -135,7 +153,12 @@ function Stopwatch() {
 
 // ========== Form Handling ==========
 function Form() {
-  const [formData, setFormData] = useState({ name: "", email: "", password: "", confirmPassword: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState("");
 
@@ -149,10 +172,12 @@ function Form() {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = "Name required";
     if (!formData.email.trim()) newErrors.email = "Email required";
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) newErrors.email = "Email invalid";
+    else if (!/\S+@\S+\.\S+/.test(formData.email))
+      newErrors.email = "Email invalid";
     if (!formData.password) newErrors.password = "Password required";
     else if (formData.password.length < 6) newErrors.password = "Min 6 chars";
-    if (formData.confirmPassword !== formData.password) newErrors.confirmPassword = "Passwords do not match";
+    if (formData.confirmPassword !== formData.password)
+      newErrors.confirmPassword = "Passwords do not match";
     return newErrors;
   };
 
@@ -171,14 +196,38 @@ function Form() {
     <div className="card">
       <h2>Registration Form</h2>
       <form onSubmit={handleSubmit}>
-        <input name="name" placeholder="Name" value={formData.name} onChange={handleChange}/>
+        <input
+          name="name"
+          placeholder="Name"
+          value={formData.name}
+          onChange={handleChange}
+        />
         {errors.name && <span className="error">{errors.name}</span>}
-        <input name="email" placeholder="Email" value={formData.email} onChange={handleChange}/>
+        <input
+          name="email"
+          placeholder="Email"
+          value={formData.email}
+          onChange={handleChange}
+        />
         {errors.email && <span className="error">{errors.email}</span>}
-        <input name="password" type="password" placeholder="Password" value={formData.password} onChange={handleChange}/>
+        <input
+          name="password"
+          type="password"
+          placeholder="Password"
+          value={formData.password}
+          onChange={handleChange}
+        />
         {errors.password && <span className="error">{errors.password}</span>}
-        <input name="confirmPassword" type="password" placeholder="Confirm Password" value={formData.confirmPassword} onChange={handleChange}/>
-        {errors.confirmPassword && <span className="error">{errors.confirmPassword}</span>}
+        <input
+          name="confirmPassword"
+          type="password"
+          placeholder="Confirm Password"
+          value={formData.confirmPassword}
+          onChange={handleChange}
+        />
+        {errors.confirmPassword && (
+          <span className="error">{errors.confirmPassword}</span>
+        )}
         <button type="submit">Submit</button>
       </form>
       {success && <p className="success">{success}</p>}
@@ -195,7 +244,9 @@ function App() {
     <div className={darkMode ? "app dark" : "app"}>
       <header>
         <h1>React Mega SPA</h1>
-        <button onClick={toggleTheme}>{darkMode ? "Light Mode" : "Dark Mode"}</button>
+        <button onClick={toggleTheme}>
+          {darkMode ? "Light Mode" : "Dark Mode"}
+        </button>
       </header>
       <nav>
         <button onClick={() => setActiveTab("counter")}>Counter</button>
