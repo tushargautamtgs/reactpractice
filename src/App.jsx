@@ -70,7 +70,7 @@ export default function App() {
           </Link>
         ))}
       </div>
-      {/* ServiceDetail render hoga yaha */}
+
       <Outlet />
     </div>
   );
