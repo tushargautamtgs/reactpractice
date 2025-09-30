@@ -1,15 +1,21 @@
-// Api Fetch cencept
 import { useEffect, useState } from "react";
 
 function App() {
+  const [username, setUsername] = useState("");
+  const [searchUser, setSearchUser] = useState("");
+
   const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
+    if (!searchUser) return;
     const fetchData = async () => {
+      setLoading(true);
+      setError(null);
+      setData(null);
       try {
-        const res = await fetch("https://api.github.com/users/tushargautamtgs");
+        const res = await fetch(`https://api.github.com/users/${searchUser}`);
         if (!res.ok) throw new Error("User Not Found");
         const result = await res.json();
         setData(result);
@@ -19,24 +25,67 @@ function App() {
         setLoading(false);
       }
     };
-
     fetchData();
-  }, []);
+  }, [searchUser]);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (username.trim() === "") return;
+    setSearchUser(username.trim());
+  };
 
   return (
     <div style={{ textAlign: "center", padding: "20px" }}>
-      <h1>GitHub User (Static)</h1>
+      <h1>GitHub User Finder</h1>
+      <form onSubmit={handleSearch}>
+        <input
+          style={{ borderRadius: "10px", padding: "10px 8px" }}
+          type="text"
+          placeholder="Enter GitHub username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <button
+          style={{
+            padding: "5px 8px",
+            borderRadius: "10px",
+            borderColor: "red",
+            color: "green",
+          }}
+          type="submit"
+        >
+          Search
+        </button>
+      </form>
 
       {loading && <p>Loading...</p>}
 
       {error && <p style={{ color: "red" }}>{error}</p>}
 
       {data && (
-        <div>
-          <img src={data.avatar_url} alt={data.login} width="150" />
-          <h2 style={{ color: "red" }}>{data.name}</h2>
+        <div style={{ marginTop: "20px" }}>
+          <img
+            src={data.avatar_url}
+            alt={data.login}
+            width="150"
+            style={{ borderRadius: "50%" }}
+          />
+          <h2>{data.name || data.login}</h2>
           <p>{data.bio}</p>
-          <p>Followers: {data.followers}</p>
+          <p>
+            <b>Followers:</b> {data.followers}
+          </p>
+          <p>
+            <b>Following:</b> {data.following}
+          </p>
+          <a
+            href={data.html_url}
+            target="_blank"
+            rel="noreferrer"
+            style={{ color: "blue" }}
+          >
+            View Profile
+          </a>
         </div>
       )}
     </div>
@@ -44,6 +93,119 @@ function App() {
 }
 
 export default App;
+
+// import { useEffect, useState } from "react";
+
+// function App() {
+//   const [username, setUsername] = useState(""); // input field
+//   const [searchUser, setSearchUser] = useState(""); // user to actually search
+//   const [data, setData] = useState(null); // API data
+//   const [loading, setLoading] = useState(false); // loading state
+//   const [error, setError] = useState(null); // error state
+
+//   // Fetch user data from GitHub API when searchUser changes
+//   useEffect(() => {
+//     if (!searchUser) return; // skip fetch if nothing is searched yet
+
+//     const fetchData = async () => {
+//       setLoading(true);
+//       setError(null);
+//       setData(null);
+
+//       try {
+//         const res = await fetch(`https://api.github.com/users/${searchUser}`);
+//         if (!res.ok) throw new Error("User Not Found");
+//         const result = await res.json();
+//         setData(result);
+//       } catch (err) {
+//         setError(err.message);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+
+//     fetchData();
+//   }, [searchUser]); // runs when searchUser changes
+
+//   // Handle search button click
+//   const handleSearch = (e) => {
+//     e.preventDefault();
+//     if (username.trim() === "") {
+//       setError("Please enter a username");
+//       return;
+//     }
+//     setSearchUser(username.trim()); // update searchUser to trigger useEffect
+//   };
+
+//   return (
+//     <div style={{ textAlign: "center", padding: "20px" }}>
+//       <h1>GitHub User Finder</h1>
+
+//       {/* Search Form */}
+//       <form onSubmit={handleSearch} style={{ marginBottom: "20px" }}>
+//         <input
+//           type="text"
+//           placeholder="Enter GitHub username"
+//           value={username}
+//           onChange={(e) => setUsername(e.target.value)}
+//           style={{
+//             padding: "8px",
+//             fontSize: "16px",
+//             marginRight: "10px",
+//             borderRadius: "5px",
+//             border: "1px solid #ccc",
+//           }}
+//         />
+//         <button
+//           type="submit"
+//           style={{
+//             padding: "8px 16px",
+//             fontSize: "16px",
+//             borderRadius: "5px",
+//             border: "none",
+//             backgroundColor: "#24292f",
+//             color: "white",
+//             cursor: "pointer",
+//           }}
+//         >
+//           Search
+//         </button>
+//       </form>
+
+//       {/* Loading */}
+//       {loading && <p>Loading...</p>}
+
+//       {/* Error */}
+//       {error && <p style={{ color: "red" }}>{error}</p>}
+
+//       {/* Data */}
+//       {data && (
+//         <div>
+//           <img
+//             src={data.avatar_url}
+//             alt={data.login}
+//             width="150"
+//             style={{ borderRadius: "50%" }}
+//           />
+//           <h2>{data.name || data.login}</h2>
+//           <p>{data.bio}</p>
+//           <p>Followers: {data.followers}</p>
+//           <p>Following: {data.following}</p>
+//           <a
+//             href={data.html_url}
+//             target="_blank"
+//             rel="noreferrer"
+//             style={{ color: "blue" }}
+//           >
+//             View Profile
+//           </a>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
+
+// export default App;
 
 // // -----------------------------------
 
