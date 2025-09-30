@@ -1,9 +1,4 @@
 // Api Fetch cencept
-
-
-
-
-
 import { useEffect, useState } from "react";
 
 function App() {
@@ -14,7 +9,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("https://api.github.com/users/octocat");
+        const res = await fetch("https://api.github.com/users/tushargautamtgs");
         if (!res.ok) throw new Error("User Not Found");
         const result = await res.json();
         setData(result);
@@ -50,143 +45,143 @@ function App() {
 
 export default App;
 
-// -----------------------------------
+// // -----------------------------------
 
-import React from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Link,
-  NavLink,
-  Outlet,
-  useParams,
-  useNavigate,
-  useSearchParams,
-} from "react-router-dom";
-import "./App.css";
+// import React from "react";
+// import {
+//   BrowserRouter,
+//   Routes,
+//   Route,
+//   Link,
+//   NavLink,
+//   Outlet,
+//   useParams,
+//   useNavigate,
+//   useSearchParams,
+// } from "react-router-dom";
+// import "./App.css";
 
-export default function App() {
-  const Home = () => {
-    const navigate = useNavigate();
-    return (
-      <div className="page">
-        <h1>Home page</h1>
-        <p>Welcome to my world</p>
-        <button className="btn" onClick={() => navigate("/about")}>
-          Go To About
-        </button>
-      </div>
-    );
-  };
+// export default function App() {
+//   const Home = () => {
+//     const navigate = useNavigate();
+//     return (
+//       <div className="page">
+//         <h1>Home page</h1>
+//         <p>Welcome to my world</p>
+//         <button className="btn" onClick={() => navigate("/about")}>
+//           Go To About
+//         </button>
+//       </div>
+//     );
+//   };
 
-  const About = () => (
-    <div className="page">
-      <h1>About Page</h1>
-      <nav className="subnav">
-        <Link to="team">Team</Link>|<Link to="company"> Company</Link>
-      </nav>
-      <Outlet />
-    </div>
-  );
+//   const About = () => (
+//     <div className="page">
+//       <h1>About Page</h1>
+//       <nav className="subnav">
+//         <Link to="team">Team</Link>|<Link to="company"> Company</Link>
+//       </nav>
+//       <Outlet />
+//     </div>
+//   );
 
-  const Team = () => (
-    <div>
-      <h2>Our Team</h2>
-      <p>Meet our awesome developers</p>
-    </div>
-  );
-  const Company = ()=> (
-    <div>
-      <h2>Our Company</h2>
-      <p>We deliver cutting-edge software solutions...</p>
-    </div>
-  );
+//   const Team = () => (
+//     <div>
+//       <h2>Our Team</h2>
+//       <p>Meet our awesome developers</p>
+//     </div>
+//   );
+//   const Company = ()=> (
+//     <div>
+//       <h2>Our Company</h2>
+//       <p>We deliver cutting-edge software solutions...</p>
+//     </div>
+//   );
 
-  const Services = () => {
-  const services = [
-    { id: 1, name: "Web Development" },
-    { id: 2, name: "Mobile Apps" },
-    { id: 3, name: "Cloud Solutions" },
-  ];
+//   const Services = () => {
+//   const services = [
+//     { id: 1, name: "Web Development" },
+//     { id: 2, name: "Mobile Apps" },
+//     { id: 3, name: "Cloud Solutions" },
+//   ];
 
-  const [searchParams] = useSearchParams();
-  const filter = searchParams.get("filter");
+//   const [searchParams] = useSearchParams();
+//   const filter = searchParams.get("filter");
 
-  return (
-    <div className="page">
-      <h1>🛠 Services</h1>
-      <p>Filter applied: {filter || "None"}</p>
-      <div className="service-links">
-        {services.map((s) => (
-          <Link key={s.id} to={`${s.id}`}>
-            {s.name}
-          </Link>
-        ))}
-      </div>
+//   return (
+//     <div className="page">
+//       <h1>🛠 Services</h1>
+//       <p>Filter applied: {filter || "None"}</p>
+//       <div className="service-links">
+//         {services.map((s) => (
+//           <Link key={s.id} to={`${s.id}`}>
+//             {s.name}
+//           </Link>
+//         ))}
+//       </div>
 
-      <Outlet />
-    </div>
-  );
-};
+//       <Outlet />
+//     </div>
+//   );
+// };
 
-  const ServiceDetail = ()=> {
-    const {id} = useParams();
-    return (
-      <div className="detail">
-        <h2>Service Detail</h2>
-        <p>You are viewing service Id: {id}</p>
-      </div>
-    );
-  };
+//   const ServiceDetail = ()=> {
+//     const {id} = useParams();
+//     return (
+//       <div className="detail">
+//         <h2>Service Detail</h2>
+//         <p>You are viewing service Id: {id}</p>
+//       </div>
+//     );
+//   };
 
-const Contact = () => (
-  <div className="page">
-    <h1>Contact Page</h1>
-    <p>Email: support@example.com</p>
-  </div>
-);
+// const Contact = () => (
+//   <div className="page">
+//     <h1>Contact Page</h1>
+//     <p>Email: support@example.com</p>
+//   </div>
+// );
 
-const NotFound = () => (
-  <div className="page">
-    <h1>404-Page Not Found</h1>
-    <p>The Page you re looking for doesn't exist!!</p>
-  </div>
-);
+// const NotFound = () => (
+//   <div className="page">
+//     <h1>404-Page Not Found</h1>
+//     <p>The Page you re looking for doesn't exist!!</p>
+//   </div>
+// );
 
-return (
-    <BrowserRouter>
-      <nav className="navbar">
-        <h2 className="logo"> React Router Demo</h2>
-        <div className="links">
-          <NavLink to="/" end>Home</NavLink>
-          <NavLink to="/about">About</NavLink>
-          <NavLink to="/services">Services</NavLink>
-          <NavLink to="/contact">Contact</NavLink>
-        </div>
-      </nav>
+// return (
+//     <BrowserRouter>
+//       <nav className="navbar">
+//         <h2 className="logo"> React Router Demo</h2>
+//         <div className="links">
+//           <NavLink to="/" end>Home</NavLink>
+//           <NavLink to="/about">About</NavLink>
+//           <NavLink to="/services">Services</NavLink>
+//           <NavLink to="/contact">Contact</NavLink>
+//         </div>
+//       </nav>
 
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<Home />} />
+//       <div className="container">
+//         <Routes>
+//           <Route path="/" element={<Home />} />
 
-          <Route path="/about" element={<About />}>
-            <Route path="team" element={<Team />} />
-            <Route path="company" element={<Company />} />
-          </Route>
+//           <Route path="/about" element={<About />}>
+//             <Route path="team" element={<Team />} />
+//             <Route path="company" element={<Company />} />
+//           </Route>
 
-          <Route path="/services" element={<Services />}>
-            <Route path=":id" element={<ServiceDetail />} />
-          </Route>
+//           <Route path="/services" element={<Services />}>
+//             <Route path=":id" element={<ServiceDetail />} />
+//           </Route>
 
-          <Route path="/contact" element={<Contact />} />
+//           <Route path="/contact" element={<Contact />} />
 
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
-  );
-}
+//           <Route path="*" element={<NotFound />} />
+//         </Routes>
+//       </div>
+//     </BrowserRouter>
+//   );
+// }
 
 // ------------------------------------------
 
