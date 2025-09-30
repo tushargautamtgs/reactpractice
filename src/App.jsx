@@ -1,3 +1,57 @@
+// Api Fetch cencept
+
+
+
+
+
+import { useEffect, useState } from "react";
+
+function App() {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(null);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch("https://api.github.com/users/octocat");
+        if (!res.ok) throw new Error("User Not Found");
+        const result = await res.json();
+        setData(result);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <div style={{ textAlign: "center", padding: "20px" }}>
+      <h1>GitHub User (Static)</h1>
+
+      {loading && <p>Loading...</p>}
+
+      {error && <p style={{ color: "red" }}>{error}</p>}
+
+      {data && (
+        <div>
+          <img src={data.avatar_url} alt={data.login} width="150" />
+          <h2 style={{ color: "red" }}>{data.name}</h2>
+          <p>{data.bio}</p>
+          <p>Followers: {data.followers}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default App;
+
+// -----------------------------------
+
 import React from "react";
 import {
   BrowserRouter,
@@ -32,7 +86,7 @@ export default function App() {
       <nav className="subnav">
         <Link to="team">Team</Link>|<Link to="company"> Company</Link>
       </nav>
-      <Outlet /> 
+      <Outlet />
     </div>
   );
 
@@ -93,8 +147,6 @@ const Contact = () => (
   </div>
 );
 
-
-
 const NotFound = () => (
   <div className="page">
     <h1>404-Page Not Found</h1>
@@ -113,24 +165,21 @@ return (
           <NavLink to="/contact">Contact</NavLink>
         </div>
       </nav>
-  
+
       <div className="container">
         <Routes>
           <Route path="/" element={<Home />} />
-
 
           <Route path="/about" element={<About />}>
             <Route path="team" element={<Team />} />
             <Route path="company" element={<Company />} />
           </Route>
 
-
           <Route path="/services" element={<Services />}>
             <Route path=":id" element={<ServiceDetail />} />
           </Route>
 
           <Route path="/contact" element={<Contact />} />
-
 
           <Route path="*" element={<NotFound />} />
         </Routes>
@@ -139,12 +188,7 @@ return (
   );
 }
 
-
-
-
-
-
-
+// ------------------------------------------
 
 // import React, {
 //   useState,
