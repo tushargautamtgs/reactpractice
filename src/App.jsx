@@ -228,101 +228,101 @@ export default function Day15Practice() {
 
 
 
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
-function App() {
-  const [username, setUsername] = useState("");
-  const [searchUser, setSearchUser] = useState("");
+// function App() {
+//   const [username, setUsername] = useState("");
+//   const [searchUser, setSearchUser] = useState("");
 
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+//   const [data, setData] = useState(null);
+//   const [loading, setLoading] = useState(false);
+//   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    if (!searchUser) return;
-    const fetchData = async () => {
-      setLoading(true);
-      setError(null);
-      setData(null);
-      try {
-        const res = await fetch(`https://api.github.com/users/${searchUser}`);
-        if (!res.ok) throw new Error("User Not Found");
-        const result = await res.json();
-        setData(result);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchData();
-  }, [searchUser]);
+//   useEffect(() => {
+//     if (!searchUser) return;
+//     const fetchData = async () => {
+//       setLoading(true);
+//       setError(null);
+//       setData(null);
+//       try {
+//         const res = await fetch(`https://api.github.com/users/${searchUser}`);
+//         if (!res.ok) throw new Error("User Not Found");
+//         const result = await res.json();
+//         setData(result);
+//       } catch (err) {
+//         setError(err.message);
+//       } finally {
+//         setLoading(false);
+//       }
+//     };
+//     fetchData();
+//   }, [searchUser]);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    if (username.trim() === "") return;
-    setSearchUser(username.trim());
-  };
+//   const handleSearch = (e) => {
+//     e.preventDefault();
+//     if (username.trim() === "") return;
+//     setSearchUser(username.trim());
+//   };
 
-  return (
-    <div style={{ textAlign: "center", padding: "20px" }}>
-      <h1>GitHub User Finder</h1>
-      <form onSubmit={handleSearch}>
-        <input
-          style={{ borderRadius: "10px", padding: "10px 8px" }}
-          type="text"
-          placeholder="Enter GitHub username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <button
-          style={{
-            padding: "5px 8px",
-            borderRadius: "10px",
-            borderColor: "red",
-            color: "green",
-          }}
-          type="submit"
-        >
-          Search
-        </button>
-      </form>
+//   return (
+//     <div style={{ textAlign: "center", padding: "20px" }}>
+//       <h1>GitHub User Finder</h1>
+//       <form onSubmit={handleSearch}>
+//         <input
+//           style={{ borderRadius: "10px", padding: "10px 8px" }}
+//           type="text"
+//           placeholder="Enter GitHub username"
+//           value={username}
+//           onChange={(e) => setUsername(e.target.value)}
+//         />
+//         <button
+//           style={{
+//             padding: "5px 8px",
+//             borderRadius: "10px",
+//             borderColor: "red",
+//             color: "green",
+//           }}
+//           type="submit"
+//         >
+//           Search
+//         </button>
+//       </form>
 
-      {loading && <p>Loading...</p>}
+//       {loading && <p>Loading...</p>}
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+//       {error && <p style={{ color: "red" }}>{error}</p>}
 
-      {data && (
-        <div style={{ marginTop: "20px" }}>
-          <img
-            src={data.avatar_url}
-            alt={data.login}
-            width="150"
-            style={{ borderRadius: "50%" }}
-          />
-          <h2>{data.name || data.login}</h2>
-          <p>{data.bio}</p>
-          <p>
-            <b>Followers:</b> {data.followers}
-          </p>
-          <p>
-            <b>Following:</b> {data.following}
-          </p>
-          <a
-            href={data.html_url}
-            target="_blank"
-            rel="noreferrer"
-            style={{ color: "blue" }}
-          >
-            View Profile
-          </a>
-        </div>
-      )}
-    </div>
-  );
-}
+//       {data && (
+//         <div style={{ marginTop: "20px" }}>
+//           <img
+//             src={data.avatar_url}
+//             alt={data.login}
+//             width="150"
+//             style={{ borderRadius: "50%" }}
+//           />
+//           <h2>{data.name || data.login}</h2>
+//           <p>{data.bio}</p>
+//           <p>
+//             <b>Followers:</b> {data.followers}
+//           </p>
+//           <p>
+//             <b>Following:</b> {data.following}
+//           </p>
+//           <a
+//             href={data.html_url}
+//             target="_blank"
+//             rel="noreferrer"
+//             style={{ color: "blue" }}
+//           >
+//             View Profile
+//           </a>
+//         </div>
+//       )}
+//     </div>
+//   );
+// }
 
-export default App;
+// export default App;
 
 // // import { useEffect, useState } from "react";
 
