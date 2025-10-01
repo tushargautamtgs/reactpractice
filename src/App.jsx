@@ -185,7 +185,7 @@ export default function Day15Practice() {
         style={{
           marginBottom: "10px",
           width: "200px",
-          background: "#eee",
+          background: "#f1bdbdff",
           height: "10px",
         }}
       >
