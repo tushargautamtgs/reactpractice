@@ -230,7 +230,7 @@ export default function Day15Practice() {
 
 // import { useEffect, useState } from "react";
 
-// function App() {
+// function App() {git 
 //   const [username, setUsername] = useState("");
 //   const [searchUser, setSearchUser] = useState("");
 
